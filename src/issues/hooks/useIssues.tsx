@@ -9,5 +9,5 @@ const getIssues = async (): Promise<Issue[]> => {
 
 export const useIssues = () => {
   const issuesQuery = useQuery(["issues"], getIssues);
-  return issuesQuery;
+  return { issuesQuery };
 };
