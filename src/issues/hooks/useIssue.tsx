@@ -11,4 +11,4 @@ export const useIssue = (issueNumber: number) => {
   const issueQuery = useQuery(["issue", issueNumber], () =>
     getIssueInfo(issueNumber)
   );
-};
+  return {issueQuery}
