@@ -7,8 +7,19 @@ const getIssueInfo = async (issueNumber: number): Promise<Issue> => {
   return data;
 };
 
+const getIssueComments = async (issueNumber: number): Promise<Issue[]> => {
+  const { data } = await githubApi.get<Issue[]>(
+    `/issues/${issueNumber}/comments`
+  );
+  return data;
+};
+
 export const useIssue = (issueNumber: number) => {
   const issueQuery = useQuery(["issue", issueNumber], () =>
     getIssueInfo(issueNumber)
   );
-  return {issueQuery}
+  const commentsQuery = useQuery(["issue", issueNumber, "comments"], () =>
+    getIssueComments(issueNumber)
+  );
+  return { issueQuery, commentsQuery };
+};
