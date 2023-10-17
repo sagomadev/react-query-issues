@@ -18,8 +18,12 @@ export const useIssue = (issueNumber: number) => {
   const issueQuery = useQuery(["issue", issueNumber], () =>
     getIssueInfo(issueNumber)
   );
-  const commentsQuery = useQuery(["issue", issueNumber, "comments"], () =>
-    getIssueComments(issueNumber)
+
+  const commentsQuery = useQuery(
+    ["issue", issueNumber, "comments"],
+    () => getIssueComments(issueQuery.data!.number),
+    { enabled: !!issueQuery.data }
   );
+
   return { issueQuery, commentsQuery };
 };
