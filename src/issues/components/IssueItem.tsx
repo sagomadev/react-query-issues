@@ -3,7 +3,7 @@ import { Issue, State } from "../interfaces";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
-import { getIssueInfo } from "../hooks/useIssue";
+import { getIssueInfo, getIssueComments } from "../hooks/useIssue";
 
 interface Props {
   issue: Issue;
@@ -16,6 +16,9 @@ export const IssueItem: FC<Props> = ({ issue }) => {
   const onMouseEnter = () => {
     queryClient.prefetchQuery(["issue", issue.number], () =>
       getIssueInfo(issue.number)
+    );
+    queryClient.prefetchQuery(["issue", issue.number, "comments"], () =>
+      getIssueComments(issue.number)
     );
   };
 
