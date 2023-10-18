@@ -22,11 +22,16 @@ export const IssueItem: FC<Props> = ({ issue }) => {
     );
   };
 
+  const preSetData = () => {
+    queryClient.setQueryData(["issue", issue.number], issue);
+  };
+
   return (
     <div
       className="card mb-2 issue"
       onClick={() => navigate(`/issues/issue/${issue.number}`)}
-      onMouseEnter={onMouseEnter}
+      // onMouseEnter={onMouseEnter}
+      onMouseEnter={preSetData}
     >
       <div className="card-body d-flex align-items-center">
         <FiInfo size={30} color="red" />
