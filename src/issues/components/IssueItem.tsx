@@ -36,7 +36,6 @@ export const IssueItem: FC<Props> = ({ issue }) => {
       onMouseEnter={preSetData}
     >
       <div className="card-body d-flex align-items-center">
-        <FiInfo size={30} color="red" />
         {issue.state === State.Open ? (
           <FiInfo size={30} color="red" />
         ) : (

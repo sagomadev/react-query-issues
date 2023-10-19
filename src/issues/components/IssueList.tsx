@@ -34,7 +34,7 @@ export const IssueList: FC<Props> = ({ issues, state, onStateChange }) => {
               className={`nav-link ${state === State.Closed ? "active" : ""}`}
               onClick={() => onStateChange(State.Closed)}
             >
-              Open
+              Closed
             </a>
           </li>
         </ul>
