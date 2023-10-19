@@ -10,6 +10,10 @@ interface Props {
 const getIssues = async (labels: string[], state?: State): Promise<Issue[]> => {
   const params = new URLSearchParams();
   if (state) params.append("state", state);
+
+  if (labels.length > 0) {
+    params.append("lebels", labels.join(","));
+  }
   const { data } = await githubApi.get<Issue[]>("/issues", { params });
   return data;
 };
