@@ -43,5 +43,10 @@ export const useIssues = ({ state, labels }: Props) => {
 
     setPage(page + 1);
   };
-  return { issuesQuery, page, nextPage, prevPage };
+  return {
+    issuesQuery,
+    page: issuesQuery.isFetching ? "Loading" : page,
+    nextPage,
+    prevPage,
+  };
 };

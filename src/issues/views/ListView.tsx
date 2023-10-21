@@ -34,11 +34,12 @@ export const ListView = () => {
         )}
       </div>
       <div className="d-flex mt-2 justify-content-between align-items-center">
-        <button className="btn btn-outline-primary" onClick={() => nextPage}>
+        <button className="btn btn-outline-primary" disabled={issuesQuery.isFetching || page<2} onClick={() => nextPage}>
           Prev
         </button>
         <span>{page}</span>
-        <button className="btn btn-outline-primary" onClick={() => nextPage}>
+      <div className="d-flex mt-2 justify-content-between align-items-center">
+        <button className="btn btn-outline-primary" disabled={issuesQuery.isFetching} onClick={() => nextPage}>
           Next
         </button>
       </div>
