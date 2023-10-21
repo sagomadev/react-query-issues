@@ -33,7 +33,13 @@ export const ListViewInfinite = () => {
           />
         )}
       </div>
-      <button className="btn btn-outline-primary mt-2">Load More...</button>
+      <button
+        disabled={!issuesQuery.hasNextPage}
+        className="btn btn-outline-primary mt-2"
+        onClick={() => issuesQuery.fetchNextPage()}
+      >
+        Load More...
+      </button>
 
       <div className="col-4">
         <LabelPicker
