@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IssueList } from "../components/IssueList";
 import { LabelPicker } from "../components/LabelPicker";
-import { useIssues } from "../hooks";
+import { useIssuesInfinite } from "../hooks";
 import { LoadingIcon } from "../../shared/components/LoadingIcon";
 import { State } from "../interfaces";
 
@@ -9,7 +9,7 @@ export const ListViewInfinite = () => {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
   const [state, setState] = useState<State>();
 
-  const { issuesQuery, page, nextPage, prevPage } = useIssues({
+  const { issuesQuery } = useIssuesInfinite({
     state,
     labels: selectedLabels,
   });
@@ -27,7 +27,7 @@ export const ListViewInfinite = () => {
           <LoadingIcon />
         ) : (
           <IssueList
-            issues={issuesQuery.data || []}
+            issues={issuesQuery.data?.pages.flat() || []}
             state={state}
             onStateChange={(newState) => setState(newState)}
           />
