@@ -5,7 +5,7 @@ import { useIssues } from "../hooks";
 import { LoadingIcon } from "../../shared/components/LoadingIcon";
 import { State } from "../interfaces";
 
-export const ListView = () => {
+export const ListViewInfinite = () => {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
   const [state, setState] = useState<State>();
 
@@ -33,23 +33,7 @@ export const ListView = () => {
           />
         )}
       </div>
-      <div className="d-flex mt-2 justify-content-between align-items-center">
-        <button
-          className="btn btn-outline-primary"
-          disabled={issuesQuery.isFetching}
-          onClick={() => nextPage}
-        >
-          Prev
-        </button>
-        <span>{page}</span>
-        <button
-          className="btn btn-outline-primary"
-          disabled={issuesQuery.isFetching}
-          onClick={() => nextPage}
-        >
-          Next
-        </button>
-      </div>
+      <button className="btn btn-outline-primary mt-2">Load More...</button>
 
       <div className="col-4">
         <LabelPicker
