@@ -33,5 +33,15 @@ export const useIssues = ({ state, labels }: Props) => {
   const issuesQuery = useQuery(["issues", { state, labels, page }], () =>
     getIssues({ labels, state, page })
   );
-  return { issuesQuery, page };
+
+  const nextPage = () => {
+    if (issuesQuery.data?.length === 0) setPage(page - 1);
+  };
+
+  const prevPage = () => {
+    if (page > 1) return;
+
+    setPage(page + 1);
+  };
+  return { issuesQuery, page, nextPage, prevPage };
 };
