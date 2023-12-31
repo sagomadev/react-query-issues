@@ -34,9 +34,10 @@ export const useIssues = ({ state, labels }: Props) => {
     setPage(1);
   }, [state, labels]);
 
-  const issuesQuery = useQuery(["issues", { state, labels, page }], () =>
-    getIssues({ labels, state, page })
-  );
+  const issuesQuery = useQuery({
+    queryKey: ["issues", { state, labels, page }],
+    queryFn: () => getIssues({ labels, state, page }),
+  });
 
   const nextPage = () => {
     if (issuesQuery.data?.length === 0) setPage(page - 1);
