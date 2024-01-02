@@ -40,13 +40,14 @@ export const useIssues = ({ state, labels }: Props) => {
   });
 
   const nextPage = () => {
-    if (issuesQuery.data?.length === 0) setPage(page - 1);
+    console.log("Click on next page", issuesQuery.data?.length);
+    if (issuesQuery.data?.length !== 0) setPage(page + 1);
   };
 
   const prevPage = () => {
-    if (page > 1) return;
+    if (page === 1) return;
 
-    setPage(page + 1);
+    setPage(page - 1);
   };
   return {
     issuesQuery,
